@@ -28,6 +28,7 @@
 <div class="jumbotron">
     <p class="lead">UV(mW/cm^-2)</p>
     <img id="uv" src="@Url.Action("uvChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+    <p><iframe src="@Url.Action("debugMode","Home",new {date=DateTime.Now.AddDays(-7)})" /></p>
 </div>
 
 <div>

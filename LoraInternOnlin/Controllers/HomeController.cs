@@ -132,7 +132,25 @@ namespace LoraInternOnlin.Controllers
 
             return null;
         }
-        
+
+        public string debugMode(DateTime date)
+        {
+            var tuple = ConnectSQL(date);
+            var hankrecords = tuple.Item1;
+            var lorarecords = tuple.Item2;
+
+            var rssitimelist = hankrecords.Select(i => i.Time).ToArray();
+            var rssivaluelist = hankrecords.Select(i => i.RSSI).ToArray();
+
+            var rssitimelist1 = lorarecords.Select(i => i.Time).ToArray();
+            var rssivaluelist1 = lorarecords.Select(i => i.RSSI).ToArray();
+
+            
+
+            return hankrecords.ToString();
+        }
+
+
         public Tuple<List<SensorData>,List<SensorData>> ConnectSQL(DateTime date)
         {
             SqlConnectionStringBuilder sql = new SqlConnectionStringBuilder();
