@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "UoSM LoRaWAN Gateway";
+}
+
+<div class="jumbotron">
+    <h1>RaspBerry Pi Lora Gateway</h1>
+    <p class="lead">Shows sensor datas in UoSM</p>
+    <p><a href="https://github.com/HankRobot/LoraInternOnline" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div>
+    <button style="background-color:azure" onclick="lastweek('#dust','#dustweek','#dustmonth','#dustyear', 'dustChart')" id="dustweek">Last Week</button>
+    <button style="background-color:lightblue" onclick="lastmonth('#dust','#dustmonth','#dustweek','#dustyear', 'dustChart')" id="dustmonth">Last Month</button>
+    <button style="background-color:lightblue" onclick="lastyear('#dust','#dustyear','#dustweek','#dustmonth', 'dustChart')" id="dustyear">Last Year</button>
+</div>
+
+<div class="jumbotron">
+    <p class="lead">Dust(kg/m^-3)</p>
+    <img id="dust" src="@Url.Action("dustChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+</div>
+
+<div>
+    <button style="background-color:azure" onclick="lastweek('#uv','#uvweek','#uvmonth','#uvyear','uvChart')" id="uvweek">Last Week</button>
+    <button style="background-color:lightblue" onclick="lastmonth('#uv','#uvmonth','#uvweek','#uvyear','uvChart')" id="uvmonth">Last Month</button>
+    <button style="background-color:lightblue" onclick="lastyear('#uv','#uvyear','#uvweek','#uvmonth','uvChart')" id="uvyear">Last Year</button>
+</div>
+
+<div class="jumbotron">
+    <p class="lead">UV(mW/cm^-2)</p>
+    <img id="uv" src="@Url.Action("uvChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+</div>
+
+<div>
+    <button style="background-color:azure" onclick="lastweek('#temp','#tempweek','#tempmonth','#tempyear','tempChart')" id="tempweek">Last Week</button>
+    <button style="background-color:lightblue" onclick="lastmonth('#temp','#tempmonth','#tempweek','#tempyear','tempChart')" id="tempmonth">Last Month</button>
+    <button style="background-color:lightblue"onclick="lastyear('#temp','#tempyear','#tempweek','#tempmonth','tempChart')" id="tempyear">Last Year</button>
+</div>
+
+<div class="jumbotron">
+    <p class="lead">Temperature(°C)</p>
+    <img id="temp" src="@Url.Action("tempChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+</div>
+
+<div>
+    <button style="background-color:azure" onclick="lastweek('#pres','#presweek','#presmonth','#presyear', 'presChart')" id="presweek">Last Week</button>
+    <button style="background-color:lightblue" onclick="lastmonth('#pres','#presmonth','#presweek','#presyear', 'presChart')" id="presmonth">Last Month</button>
+    <button style="background-color:lightblue" onclick="lastyear('#pres','#presyear','#presweek','#presmonth', 'presChart')" id="presyear">Last Year</button>
+</div>
+
+<div class="jumbotron">
+    <p class="lead">Pressure(Pa)</p>
+    <img id="pres" src="@Url.Action("presChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+</div>
+
+<div>
+    <button style="background-color:azure" onclick="lastweek('#hum','#humweek','#hummonth','#humyear', 'humChart')" id="humweek">Last Week</button>
+    <button style="background-color:lightblue" onclick="lastmonth('#hum','#hummonth','#humweek','#humyear', 'humChart')" id="hummonth">Last Month</button>
+    <button style="background-color:lightblue" onclick="lastyear('#hum','#humyear','#humweek','#hummonth', 'humChart')" id="humyear">Last Year</button>
+</div>
+
+<div class="jumbotron">
+    <p class="lead">Humidity(%)</p>
+    <img id="hum" src="@Url.Action("humChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+</div>
+
+<div>
+    <button style="background-color:azure" onclick="lastweek('#rssi','#rssiweek','#rssimonth','#rssiyear', 'RSSIChart')" id="rssiweek">Last Week</button>
+    <button style="background-color:lightblue" onclick="lastmonth('#rssi','#rssimonth','#rssiweek','#rssiyear', 'RSSIChart')" id="rssimonth">Last Month</button>
+    <button style="background-color:lightblue" onclick="lastyear('#rssi','#rssiyear','#rssiweek','#rssimonth', 'RSSIChart')" id="rssiyear">Last Year</button>
+</div>
+
+<div class="jumbotron">
+    <p class="lead">RSSI</p>
+    <img id="rssi" src="@Url.Action("RSSIChart","Home",new {date=DateTime.Now.AddDays(-7)})" />
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    function lastweek(id, id1, id2, id3, chartName) {
+        $(id1).prop("disabled", true);
+        $(id2).prop("disabled", false);
+        $(id3).prop("disabled", false);
+
+        $(id1).attr('style', 'background-color:azure');
+        $(id2).attr('style', 'background-color:lightblue');
+        $(id3).attr('style', 'background-color:lightblue');
+
+
+        var inStr = '@Url.Action("xChart","Home",new {date=DateTime.Now.AddDays(-7)})';
+        inStr = inStr.replace("xChart", chartName);
+        $(id).attr('src', inStr);
+    }
+        
+    function lastmonth(id, id1, id2, id3, chartName) {
+        $(id1).prop("disabled", true);
+        $(id2).prop("disabled", false);
+        $(id3).prop("disabled", false);
+
+        $(id1).attr('style', 'background-color:azure');
+        $(id2).attr('style', 'background-color:lightblue');
+        $(id3).attr('style', 'background-color:lightblue');
+
+        var inStr = '@Url.Action("xChart","Home",new {date=DateTime.Now.AddMonths(-1)})';
+        inStr = inStr.replace("xChart", chartName);
+        $(id).attr('src', inStr);
+    }
+
+    function lastyear(id, id1, id2, id3, chartName) {
+        $(id1).prop("disabled", true);
+        $(id2).prop("disabled", false);
+        $(id3).prop("disabled", false);
+
+        $(id1).attr('style', 'background-color:azure');
+        $(id2).attr('style', 'background-color:lightblue');
+        $(id3).attr('style', 'background-color:lightblue');
+
+        var inStr = '@Url.Action("xChart","Home",new {date=DateTime.Now.AddYears(-1)})';
+        inStr = inStr.replace("xChart", chartName);
+        $(id).attr('src', inStr);
+    }
+
+</script>
