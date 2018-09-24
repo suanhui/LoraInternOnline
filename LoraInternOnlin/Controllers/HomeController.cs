@@ -147,7 +147,7 @@ namespace LoraInternOnlin.Controllers
 
             
 
-            return hankrecords.ToString();
+            return rssitimelist[0].ToString()+"  "+ rssitimelist[2].ToString();
         }
 
 
